@@ -30,6 +30,7 @@
     - [ ] userName
     - [ ] owner
     - [ ] uriToBlog
+    - [ ] ipfsHash
     - [ ] likesCount
 
 
