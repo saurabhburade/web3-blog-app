@@ -1,9 +1,7 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement } from "react";
 
-interface Props {
-    
-}
+interface Props {}
 
-export default function Page({children}: Props): ReactElement {
-    return <div className="px-10">{children}</div>;
+export default function Page({ children }: Props): ReactElement {
+  return <div className="px-10">{children}</div>;
 }

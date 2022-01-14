@@ -1,6 +1,7 @@
 import React from "react";
-import { FaUser,FaSearch,FaBell } from "react-icons/fa";
+import { FaUser, FaSearch, FaBell } from "react-icons/fa";
 import Toggle from "../../context/ThemeToggle";
+import WalletConnector from "../Wallet/WalletConnector";
 interface Props {}
 
 export const Header = (props: Props) => {
@@ -16,9 +17,10 @@ export const Header = (props: Props) => {
         <i className="bg-gray-700 p-2 rounded mx-2">
           <FaBell className="text-gray-500 " />
         </i>
-        <button className="text-gray-200 bg-blue-700 px-5 py-1  font-semibold rounded mx-2">
+        {/* <button className="text-gray-200 bg-blue-700 px-5 py-1  font-semibold rounded mx-2">
           Login
-        </button>
+              </button> */}
+        <WalletConnector />
         <Toggle />
       </div>
     </div>

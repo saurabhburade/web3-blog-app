@@ -11,9 +11,9 @@ export const IpfsFileUpload = (props: Props) => {
     const file = e.target.files[0];
     try {
       const added = await client.add(file);
-        const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-        console.log({ added });
-        
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      console.log({ added });
+
       updateFileUrl(url);
     } catch (error) {
       console.log("Error uploading file: ", error);
