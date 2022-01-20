@@ -34,10 +34,11 @@ const Home: NextPage = () => {
       </Head>
       <Header />
 
-      <div className="px-20">
+      <div className="px-0">
         <IpfsFileUpload />
 
         <div className="flex flex-wrap justify-evenly">
+          
           <BlogCard />
           <BlogCard />
           <BlogCard />
