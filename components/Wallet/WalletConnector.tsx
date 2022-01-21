@@ -28,7 +28,7 @@ function MyDialog() {
     <div>
       <button
         onClick={() => setIsOpen(account ? false : true)}
-        className="text-gray-200 bg-blue-700 px-5 py-2   rounded mx-2"
+        className="px-5 py-1 mx-2 font-semibold text-gray-200 bg-blue-700 rounded"
       >
         {account
           ? `${account.slice(0, 5)}...${account.slice(39, account.length)}`
@@ -46,26 +46,26 @@ function MyDialog() {
         <Dialog
           open={isOpen}
           onClose={() => setIsOpen(false)}
-          className="fixed z-10 inset-0 overflow-y-auto"
+          className="fixed inset-0 z-10 overflow-y-auto"
         >
           <div className="flex items-center justify-center min-h-screen">
             <Dialog.Overlay className="fixed inset-0 bg-black opacity-70" />
 
-            <div className="relative bg-gray-900 rounded max-w-sm mx-auto p-5 w-9/12">
-              <div className="flex justify-between mb-3 items-center">
-                <Dialog.Title className="text-gray-200 font-semibold">
+            <div className="relative w-9/12 max-w-sm p-5 mx-auto bg-gray-900 rounded">
+              <div className="flex items-center justify-between mb-3">
+                <Dialog.Title className="font-semibold text-gray-200">
                   Connect Wallet
                 </Dialog.Title>
                 <button
                   className="hover:bg-gray-800"
                   onClick={() => setIsOpen(false)}
                 >
-                  <IoMdClose className="text-gray-200 text-xl font-semibold" />
+                  <IoMdClose className="text-xl font-semibold text-gray-200" />
                 </button>
               </div>
               <div className="flex flex-wrap justify-around">
                 <button
-                  className="bg-gray-800 p-5 flex flex-col items-center my-3 mx-2 rounded"
+                  className="flex flex-col items-center p-5 mx-2 my-3 bg-gray-800 rounded"
                   onClick={() => {
                     activate(injected);
                     setIsOpen(false);
@@ -79,7 +79,7 @@ function MyDialog() {
                   <h3 className="text-gray-200">Metamask</h3>
                 </button>{" "}
                 <button
-                  className="bg-gray-800 p-5 flex flex-col items-center my-3 mx-2 rounded"
+                  className="flex flex-col items-center p-5 mx-2 my-3 bg-gray-800 rounded"
                   onClick={() => {
                     activate(injected);
                     setIsOpen(false);

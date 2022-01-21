@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FaUser, FaSearch, FaBell } from "react-icons/fa";
 import Toggle from "../../context/ThemeToggle";
@@ -6,20 +7,24 @@ interface Props {}
 
 export const Header = (props: Props) => {
   return (
-    <div className="bg-gray-900  px-12 py-5 flex justify-between items-center dark:bg-gray-200">
-      <h1 className="logo text-xl font-bold text-white dark:text-gray-700">
-        Header
-      </h1>
-      <div className="flex  items-center">
-        <i className="bg-gray-700 p-2 rounded mx-2">
-          <FaSearch className="text-gray-500 " />
+    <div className="flex items-center justify-between px-12 py-5 bg-gray-900 dark:bg-gray-200">
+      <Link href="/">
+        <button className="text-xl font-bold text-white logo dark:text-gray-700">
+          LOGO
+        </button>
+      </Link>
+      <div className="flex items-center">
+        <i className="p-2 mx-2 bg-gray-300 rounded cursor-pointer dark:bg-gray-700">
+          <FaSearch className="text-gray-200 dark:text-gray-200 " />
         </i>
-        <i className="bg-gray-700 p-2 rounded mx-2">
+        <i className="p-2 mx-2 bg-gray-700 rounded cursor-pointer">
           <FaBell className="text-gray-500 " />
         </i>
-        {/* <button className="text-gray-200 bg-blue-700 px-5 py-1  font-semibold rounded mx-2">
-          Login
-              </button> */}
+        <Link href="/register/">
+          <button className="px-5 py-1 mx-2 font-semibold text-gray-200 bg-blue-700 rounded">
+            Register
+          </button>
+        </Link>
         <WalletConnector />
         <Toggle />
       </div>
