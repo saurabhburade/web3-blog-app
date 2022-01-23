@@ -1,0 +1,154 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_userName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_profileImage",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_idx",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "blogAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_blogIPFShash",
+        "type": "string"
+      }
+    ],
+    "name": "BlogCreated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_bio",
+        "type": "string"
+      }
+    ],
+    "name": "updateBio",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_cover",
+        "type": "string"
+      }
+    ],
+    "name": "updateCoverImage",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_profileImg",
+        "type": "string"
+      }
+    ],
+    "name": "updateProfileImage",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFields",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "_userName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_bio",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_profileImage",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_owner",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_idx",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "_address",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "createdBlock",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct User.Blog[]",
+        "name": "_myBlogs",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "blogIPFShash",
+        "type": "string"
+      }
+    ],
+    "name": "createBlog",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
