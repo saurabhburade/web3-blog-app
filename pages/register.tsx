@@ -26,13 +26,13 @@ export default function register({}: Props): ReactElement {
   );
   console.log({ library, web3Provider }, web3Provider.getSigner());
   const contract = new Contract(
-    "0x261725549A8EA98F934B6bf8d3541e737Fb45d74",
+    "0x9230310f669C0Ff5438aEB680F3e62AaaFCFE1f6",
     userFactoryABI,
     web3Provider?.getSigner(account)
   );
   const web3Contract = new web3Client.eth.Contract(
     userFactoryABI,
-    "0x261725549A8EA98F934B6bf8d3541e737Fb45d74"
+    "0x9230310f669C0Ff5438aEB680F3e62AaaFCFE1f6"
   );
   const contractWithSigner = contract.connect(web3Provider.getSigner(account));
   const [fileUrl, updateFileUrl] = React.useState(``);
@@ -50,17 +50,22 @@ export default function register({}: Props): ReactElement {
     }
   }
   const handleRegister = async () => {
-    console.log("handleRegister", web3Contract);
+    console.log(
+      "handleRegister",
+      web3Contract,
+      web3Contract.methods.createUser
+    );
     // const txn = await contractWithSigner.populateTransaction.createUser(
     //   "bob",
     //   "ipfshashhere"
     // );
     const txn = await web3Contract.methods
-      .createUser("bob", "ipfshashhere")
+      .createUser("bob", "ip")
       .send({
         from: account,
       });
-    console.log(txn);
+    console.log({ txn });
+    
     if (fileUrl.trim() && userName.trim() && account) {
       console.log({ contractWithSigner });
     }
