@@ -10,6 +10,7 @@
     "format:write": "prettier --write \"**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@ethersproject/contracts": "^5.5.0",
     "@headlessui/react": "^1.4.2",
     "@sushiswap/core-sdk": "^1.0.0-canary.34",
     "@web3-react/abstract-connector": "^6.0.7",

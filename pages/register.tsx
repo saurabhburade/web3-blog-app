@@ -3,8 +3,11 @@ import { Header } from "../components/Header/Header";
 import { create } from "ipfs-http-client";
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
+import { Contract } from "@ethersproject/contracts";
 import userFactoryABI from "../config/abis/usersFactoryABI.json";
 import UncheckedJsonRpcSigner from "../utils/signer";
+import Web3 from "web3";
+import useWeb3 from "../hooks/useWeb3";
 
 interface Props {}
 
@@ -17,15 +20,19 @@ export function getProviderOrSigner(library, account) {
 
 export default function register({}: Props): ReactElement {
   const { account, library } = useWeb3React();
-
+  const web3Client = useWeb3();
   const web3Provider = new ethers.providers.JsonRpcProvider(
-    "https://data-seed-prebsc-1-s1.binance.org:8545/"
+    "https://data-seed-prebsc-1-s2.binance.org:8545/"
   );
   console.log({ library, web3Provider }, web3Provider.getSigner());
-  const contract = new ethers.Contract(
+  const contract = new Contract(
     "0x261725549A8EA98F934B6bf8d3541e737Fb45d74",
     userFactoryABI,
-    library?.getSigner(account)
+    web3Provider?.getSigner(account)
+  );
+  const web3Contract = new web3Client.eth.Contract(
+    userFactoryABI,
+    "0x261725549A8EA98F934B6bf8d3541e737Fb45d74"
   );
   const contractWithSigner = contract.connect(web3Provider.getSigner(account));
   const [fileUrl, updateFileUrl] = React.useState(``);
@@ -43,13 +50,16 @@ export default function register({}: Props): ReactElement {
     }
   }
   const handleRegister = async () => {
-    console.log(
-      "handleRegister",
-      contractWithSigner.createUser,
-      library?.getSigner(account),
-      web3Provider.getSigner(account)
-    );
-    const txn = await contractWithSigner.createUser("bob", "ipfshashhere");
+    console.log("handleRegister", web3Contract);
+    // const txn = await contractWithSigner.populateTransaction.createUser(
+    //   "bob",
+    //   "ipfshashhere"
+    // );
+    const txn = await web3Contract.methods
+      .createUser("bob", "ipfshashhere")
+      .send({
+        from: account,
+      });
     console.log(txn);
     if (fileUrl.trim() && userName.trim() && account) {
       console.log({ contractWithSigner });

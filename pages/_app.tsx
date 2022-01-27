@@ -5,9 +5,10 @@ import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import { ethers } from "ethers";
 import React from "react";
 import { injected } from "../config/wallets";
+import Web3 from "web3";
 // import "tailwindcss/"
-const getLibrary = (provider): ethers.providers.Web3Provider => {
-  const library = new ethers.providers.Web3Provider(provider);
+const getLibrary = (provider) => {
+  const library = new Web3(provider);
 
   return library;
 };
