@@ -8,6 +8,28 @@ import userFactoryABI from "../config/abis/usersFactoryABI.json";
 import UncheckedJsonRpcSigner from "../utils/signer";
 import Web3 from "web3";
 import useWeb3 from "../hooks/useWeb3";
+import toast, { Toaster } from "react-hot-toast";
+import * as Ri from "react-icons/ri"
+
+const notifyTxn = (hash) =>
+  toast((t) => (
+    <div className="flex items-center">
+      <p className="mx-3">Transaction Submitted</p>
+      <a
+        href={`https://testnet.bscscan.com/tx/${hash}`}
+        onClick={() => toast.dismiss(t.id)}
+        className="inline-flex justify-center p-2 mr-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+      >
+        <Ri.RiExternalLinkLine />
+      </a>
+      <button
+        onClick={() => toast.dismiss(t.id)}
+        className="inline-flex justify-center p-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+      >
+        <Ri.RiCloseLine />
+      </button>
+    </div>
+  ));
 
 interface Props {}
 
@@ -65,7 +87,9 @@ export default function register({}: Props): ReactElement {
         from: account,
       });
     console.log({ txn });
-    
+    if (txn) {
+      notifyTxn(txn.transactionHash);
+    }
     if (fileUrl.trim() && userName.trim() && account) {
       console.log({ contractWithSigner });
     }
@@ -116,6 +140,8 @@ export default function register({}: Props): ReactElement {
             >
               Register
             </button>
+            {/* <button onClick={notify}>Toast</button> */}
+            <Toaster  />
           </div>
         </div>
       </div>
