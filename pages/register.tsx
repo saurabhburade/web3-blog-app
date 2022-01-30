@@ -17,6 +17,7 @@ const notifyTxn = (hash) =>
       <p className="mx-3">Transaction Submitted</p>
       <a
         href={`https://testnet.bscscan.com/tx/${hash}`}
+        target="_blank"
         onClick={() => toast.dismiss(t.id)}
         className="inline-flex justify-center p-2 mr-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
       >
@@ -81,17 +82,15 @@ export default function register({}: Props): ReactElement {
     //   "bob",
     //   "ipfshashhere"
     // );
-    const txn = await web3Contract.methods
-      .createUser("bob", "ip")
-      .send({
-        from: account,
-      });
-    console.log({ txn });
-    if (txn) {
-      notifyTxn(txn.transactionHash);
-    }
+
     if (fileUrl.trim() && userName.trim() && account) {
-      console.log({ contractWithSigner });
+     const txn = await web3Contract.methods.createUser(userName, fileUrl).send({
+       from: account,
+     });
+     console.log({ txn });
+     if (txn) {
+       notifyTxn(txn.transactionHash);
+     }
     }
   };
   return (
@@ -132,7 +131,9 @@ export default function register({}: Props): ReactElement {
               </span>
               <input type="file" onChange={onFileChange} />
             </div>
-            {fileUrl && <img src={fileUrl} width="600px" />}{" "}
+            {fileUrl && (
+              <img src={`https://dweb.link/ipfs/${fileUrl}`} width="600px" />
+            )}{" "}
             <button
               type="button"
               onClick={handleRegister}
@@ -141,7 +142,7 @@ export default function register({}: Props): ReactElement {
               Register
             </button>
             {/* <button onClick={notify}>Toast</button> */}
-            <Toaster  />
+            <Toaster />
           </div>
         </div>
       </div>
