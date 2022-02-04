@@ -4,6 +4,7 @@ import { Header } from "../components/Header/Header";
 import useWeb3 from "../hooks/useWeb3";
 import userFactoryABI from "../config/abis/usersFactoryABI.json";
 import userABI from "../config/abis/userABI.json";
+import BlogsList from "../components/UserBlogs/BlogsList";
 
 function profile() {
   const { account } = useWeb3React();
@@ -25,29 +26,46 @@ function profile() {
           userABI,
           foundAccount[1]
         );
-          const user = await userContract.methods.getFields().call();
-          setuserFields(user)
-          console.log({user});
-          
+        const user = await userContract.methods.getFields().call();
+        setuserFields(user);
+        console.log({ user });
       }
     };
-      
-      if (account) {
-          fetchUser();
-      }
+
+    if (account) {
+      fetchUser();
+    }
   }, [account]);
   return (
     <div>
       <Header />
+      <div className="flex px-20 my-10 ">
+        {!!userFields && (
+          <>
+            <img
+              src={`https://dweb.link/ipfs/${userFields?._profileImage}`}
+              className="w-64 rounded-xl"
+            />
+            <div className="mx-5">
+              <p className="text-2xl text-white text-bolder">@JohnDoe</p>
+              <p className="text-gray-600 text-md ">JohnDoe</p>
+              <p className="text-gray-600 text-md ">{account}</p>
+              <div className="flex">
+                <button className="p-1 px-2 mr-1 text-sm text-white bg-blue-500 rounded btn active:ring-2">
+                  New Post
+                </button>
+                <button className="p-1 px-2 text-sm text-white bg-blue-500 rounded btn active:ring-2">
+                  Explore
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
 
-      {!!userFields && (
-        <>
-          <img
-            src={`https://dweb.link/ipfs/${userFields?._profileImage}`}
-            width="600px"
-          />
-        </>
-      )}
+      <div className="px-20">
+        <BlogsList />
+      </div>
     </div>
   );
 }
